@@ -1,0 +1,159 @@
+plugins {
+    id 'idea'
+    id 'maven'
+    id 'java'
+}
+
+group 'org.smartcities.sandbox'
+version '1.0-SNAPSHOT'
+
+
+jar {
+    manifest {
+        attributes("Implementation-Title": "Gradle",
+                "Implementation-Version": version,
+                "Main-Class": "peerinfluence.run.scripts.VanillaPeerPressureSimulation")
+    }
+}
+
+
+
+//copyShadowToExternalDrive.dependsOn shadowJar
+
+repositories {
+    maven { url 'http://download.osgeo.org/webdav/geotools/' }
+    maven { url 'http://dl.bintray.com/matsim/matsim' }
+    maven { url "http://repo.opengeo.org" }
+
+    maven { url 'http://oss.jfrog.org/libs-snapshot' }
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    // Internal deps
+
+    //   MATSim deps:
+    compile 'org.matsim:matsim:0.9.0-SNAPSHOT'
+    // Contribs
+    compile 'org.matsim.contrib:otfvis:0.9.0-SNAPSHOT'
+    compile 'org.matsim.contrib:locationchoice:0.9.0-SNAPSHOT'
+    compile 'org.matsim.contrib:networkEditor:0.9.0-SNAPSHOT'
+    compile 'org.matsim.contrib:parking:0.9.0-SNAPSHOT'
+    compile 'org.matsim.contrib:emissions:0.9.0-SNAPSHOT'
+    compile 'org.matsim.contrib:transEnergySim:0.9.0-SNAPSHOT'
+    compile 'org.matsim.contrib:accessibility:0.9.0-SNAPSHOT'
+    compile 'org.matsim.contrib:dvrp:0.9.0-SNAPSHOT'
+    compile 'org.matsim.contrib:cadytsIntegration:0.9.0-SNAPSHOT'
+    compile 'org.matsim.contrib:pseudosimulation:0.9.0-SNAPSHOT'
+    compile 'org.matsim.contrib:taxi:0.9.0-SNAPSHOT'
+    compile 'org.matsim:pt2matsim:0.0.1-SNAPSHOT'
+    compile 'cadyts:cadyts:1.1.0'
+
+    // Lombok (In use)
+    compile 'org.projectlombok:lombok:1.16.6'
+
+    // Geospatial
+    compile 'org.openstreetmap.osmosis:osmosis-xml:0.43.1'
+    compile 'de.micromata.jak:JavaAPIforKml:2.2.0'
+    compile 'org.geotools:gt-referencing:2.5-SNAPSHOT'
+
+    // RL
+    compile 'edu.brown.cs.burlap:burlap:2.1.1'
+
+    // Mail utility
+    compile 'com.sun.mail:javax.mail:1.5.3'
+
+    // Optimization
+    compile 'javax.activation:activation:1.1.1'
+
+    // Apache commons
+    compile 'org.apache.commons:commons-lang3:3.1'
+    compile 'org.apache.commons:commons-lang3:3.3.2'
+
+    // Optimization
+    compile 'org.jamesframework:james-core:1.1'
+
+    // Onebusaway
+    compile('org.onebusaway:onebusaway-gtfs:1.3.4') {
+        exclude group: 'org.geotools'
+    }
+
+    //////////////////////////////////
+    // Net and Serialization Stuff //
+    /////////////////////////////////
+
+    // HTTP and REST (retrofit)
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.5.2'
+
+    // Functional Java and RX
+    compile 'org.aeonbits.owner:owner:1.0.9'
+    compile 'one.util:streamex:0.5.3'
+    compile "org.functionaljava:functionaljava:4.2"
+    compile 'org.apache.httpcomponents:httpclient:4.5.1'
+    compile "org.functionaljava:functionaljava-java8:4.2"
+    compile 'io.reactivex:rxjava:1.0.14'  // RX Java
+
+    // IO and serialization
+    compile 'org.apache.poi:poi:3.14'
+    compile 'net.sf.supercsv:super-csv:2.4.0'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile group: 'net.sf.saxon', name: 'Saxon-HE', version: '9.7.0-1'
+
+    // Postgres
+    compile 'org.postgresql:postgresql:9.4-1202-jdbc42'
+
+    ////////////////////////////////////
+    // Graph Data Structures and Algos //
+    /////////////////////////////////
+
+    // Gephi
+    compile 'it.uniroma1.dis.wsngroup.gexf4j:gexf4j:1.0.0'
+
+    // graphstream spike
+    compile 'org.graphstream:gs-core:1.3'
+    compile 'org.graphstream:gs-algo:1.3'
+
+    // jung
+    compile 'net.sf.jung:jung2:2.0.1'
+    compile 'net.sf.jung:jung-graph-impl:2.0.1'
+    compile 'net.sf.jung:jung-visualization:2.0.1'
+    compile 'net.sf.jung:jung-samples:2.0.1'
+
+    // Tinkerpop (remove later)
+    compile 'org.apache.tinkerpop:tinkergraph-gremlin:3.1.0-incubating'
+    compile 'org.bayofmany.peapod:peapod:0.2.2'
+
+    // General Data Structures
+    compile 'trove:trove:1.0.2'
+
+    ///////////////////
+    // Testing and Code Quality
+    /////////////////
+
+    // Junit
+    compile 'junit:junit:4.12'
+
+    // Bugs
+    compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.0'
+    // Mock
+    compile 'org.hamcrest:hamcrest-all:1.3'
+
+    //////////////////
+    // Scala Stuff
+    /////////////////
+
+    compile group: 'com.typesafe.akka', name: 'akka-actor_2.11', version: '2.4-SNAPSHOT'
+    compile group: 'org.scala-lang', name: 'scala-library', version: '2.11.6'
+    compile 'org.scala-lang:scala-library:2.11.6'
+
+}
+
+
+
+
+
+
